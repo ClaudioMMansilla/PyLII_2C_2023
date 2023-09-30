@@ -42,7 +42,8 @@
             }
             else if(double.TryParse(valor, out strToDouble))
             {
-                this.valorNumerico = Math.Abs(strToDouble);
+                //this.valorNumerico = Math.Abs(strToDouble);
+                this.valorNumerico = strToDouble;
             }
             else
             {
@@ -68,7 +69,7 @@
 
         public static Numeracion operator /(Numeracion n1, Numeracion n2)
         {
-            return new Numeracion((n1.valorNumerico / n2.valorNumerico), n1.sistema);
+            return new Numeracion((n2.valorNumerico > 0)? (n1.valorNumerico / n2.valorNumerico) : 0, n1.sistema);
         }
 
         public static bool operator ==(Numeracion n1, Numeracion n2)
@@ -130,7 +131,7 @@
         */
         private string DecimalABinario(int valor)
         {
-            string bin = Convert.ToString(valor, 2);
+            string bin = Convert.ToString(Math.Abs(valor), 2);
             return this.DecimalABinario(bin);
         }
 
